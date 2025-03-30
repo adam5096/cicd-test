@@ -1,2 +1,2 @@
 console.log("Let's test CD/CI !");
-const
+const myVariable = "someValue";
