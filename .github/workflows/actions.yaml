@@ -1,0 +1,31 @@
+# 這個工作流程的名稱是「test」
+name: test
+
+# 指定何時執行這個工作流程
+on:
+  push:
+    branches:
+      - main  # 當代碼被推送到 main 分支時
+  pull_request:
+    branches:
+      - main  # 當有人針對 main 分支建立拉取請求時
+# 定義要執行的工作
+jobs:
+  build:
+    runs-on: ubuntu-latest  # 在最新版本的 Ubuntu 上執行
+
+    # 工作中按順序執行的步驟
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3  # 檢出存儲庫（下載代碼）
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '22'  # 設置 Node.js 版本 22
+
+      - name: Install dependencies
+        run: npm install  # 安裝必需的依賴項（npm 包）
+
+      - name: Run tests
+        run: npm test  # 運行測試
